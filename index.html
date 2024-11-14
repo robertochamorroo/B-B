@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="Website Icon" href="aprendendo.png">
+    <title>B&B</title>
+    
+<script>
+
+    let historico = [];
+
+
+    function verificarNota() {
+
+
+        var nota1 = parseFloat(window.prompt("Digite a primeira nota:"));
+        var nota2 = parseFloat(window.prompt("Digite a segunda nota:"));
+       
+        if (isNaN(nota1) || isNaN(nota2)) {
+            alert('Por favor, insira números válidos.');
+            return;
+        }
+
+
+        var media = (nota1 + nota2) / 2;
+        let mensagem = '';
+
+
+        switch (Math.round(media)) {
+            case 0:
+                mensagem = 'Sua nota é ' + media + ' MUITO ABAIXO DA MÉDIA, há quem diga que para errar todas as respostas tem que saber todas as respostas hehe';
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                mensagem = 'Sua nota é ' + media + ' MUITO ABAIXO DA MÉDIA, procure melhorar';
+                break;
+            case 5:
+            case 6:
+                mensagem = 'Sua nota é ' + media + ' ABAIXO DA MÉDIA, foi quase, mais sorte na próxima vez';
+                break;
+            case 7:
+                mensagem = 'Sua nota é ' + media + ' está na MÉDIA, está bom, mas pode melhorar';
+                break;
+            case 8:
+                mensagem = 'Sua nota é ' + media + ' ACIMA DA MÉDIA, está muito bom, continue assim';
+                break;
+            case 9:
+                mensagem = 'Sua nota é ' + media + ' MUITO ACIMA DA MÉDIA, excelente, quase gabaritou';
+                break;
+            case 10:
+                mensagem = 'Sua nota é ' + media + ' MUITO ACIMA DA MÉDIA, fantástico! Já pode substituir o professor na sala de aula!';
+                break;
+            default:
+                mensagem = 'Este número não corresponde a nenhuma nota válida.';
+        }
+
+
+        alert(mensagem);
+
+
+        historico.push({ nota1, nota2, media });
+
+
+        atualizarHistorico();
+    }
+
+
+    function atualizarHistorico() {
+        let divHistorico = document.getElementById('historico');
+        divHistorico.innerHTML = '<h2>Histórico de Médias:</h2>';
+       
+        historico.forEach((entrada, index) => {
+            divHistorico.innerHTML += `<p>${index + 1}: Nota 1: ${entrada.nota1}, Nota 2: ${entrada.nota2}, Média: ${entrada.media.toFixed(2)}</p>`;
+        });
+    }
+
+    function reset() {
+    historico = []; 
+    let divHistorico = document.getElementById('historico');
+    divHistorico.innerHTML = '<h2>Histórico de Médias:</h2><p>O histórico foi reiniciado.</p>'; 
+}
+
+
+    
+
+</script>
+</head>
+
+<header>
+    <div class="interface">
+        <div class="logo">
+            <a id="logo" href="#">
+                <img id="logo" src="aprendendo.png" alt="Logo Escola">
+            </a>
+        </div>
+
+        <nav class="menu-desktop">
+            <ul>
+                <li><a href="#a1">História</a></li>
+                <li><a href="#a2">Médias</a></li>
+            </ul>
+        </nav>
+
+        <div class="button-contato">
+            <a href="#formulario">
+                <button>Contato</button>
+            </a>
+        </div>
+
+    </div> 
+
+    </header>  
+
+    <body>
+
+        <section id = "fundo1">
+            <h1 id="titulo1">Colégio B&B</h1>
+        </section>
+        
+    <section id="a1" class="destaque">
+        <div id="box1">
+            <h1 class="centralizado"> História</h1>
+        </div>
+    
+        <div class="coluna dois">
+            <img class = fixed src="school.jpeg" width="100%" height="75%" alt="Livros escolares" />
+        </div>
+        <div class="coluna dois">
+            <h1 class="centralizado justificado ">
+            A trajetória histórica da B&B
+            </h1>
+        </div>
+    
+        <div class="coluna dois">
+            <p class="justificado ">
+                A Escola B&B foi fundada em 1995 por Bernardo Renner e Bebeto Chamorro, dois amigos de infância com uma paixão comum pela educação. Situada numa pequena cidade costeira de Gravataí, Rio Grande do Sul, a B&B começou como um projeto ambicioso para proporcionar um ensino inovador e personalizado, focado em valores como a criatividade, o respeito e a cidadania. Ao longo dos anos, a escola expandiu-se, tornando-se uma referência na região pelo seu método de ensino único, que integra as tradições locais com uma visão global, preparando os alunos para os desafios do futuro.
+            </p>
+        </div>
+    </section>
+
+    <section id="a2" class="destaque centralizado">
+        <div id="box1">
+            <h1 class="centralizado"> Médias</h1>
+        </div>
+    <button onclick="verificarNota()">Calcular média</button>
+    <br><br><br>
+    <p>Aperte no botão acima para calcular as médias de suas notas</p>
+    <br><br>
+    <button onclick="reset()">Limpar Histórico</button>
+    <br><br><br>
+
+    <div id="historico"></div>
+    </section>
+    
+<section class="vamoscentralizarestasection">
+    <div class="container">
+        <h3> Deixe suas opiniões abaixo!</h3>
+        <br>
+        <p class="destaque"> Separe as mensagens com o caracter "," (vírgula).</p>
+        <br>
+        <textarea placeholder="Deixe seu recado..." id="textarea"></textarea>
+<div class="h4">
+        <h4> Comentários:</h4>
+</div>
+        <div id="tags"></div>
+      </div>
+  
+      <script src="script.js"></script>
+</section>
+
+    <div id="formulario">
+        <div class="">
+            <h2 class="titulo2">NOS AJUDE A MELHORAR!</h2>
+
+            <form action="">
+                <input type="text" name="" id="" placeholder="Seu nome completo:" required>
+                <input type="text" name="" id="" placeholder="Seu e-mail:" required>
+                <input type="text" name="" id="" placeholder="Seu celular:">
+                <textarea name="" id="" placeholder="Sua mensagem:" required></textarea>
+                <div class="btn-enviar"><input type="submit" value="ENVIAR"></div>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 B&B Escola. Todos os direitos reservados.</p>
+    </footer>
+    
+</body>
+</html>
